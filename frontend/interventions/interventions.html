@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gestion des Interventions</title>
+  <link rel="stylesheet" href="interventions.css" />
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <div class="layout">
+    <div id="sidebar-container"></div>
+
+    <div class="content">
+      <h2>📋 Liste des Interventions</h2>
+      <button class="add-button" onclick="openModal()">➕ Planifier une intervention</button>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Équipement</th>
+            <th>Technicien</th>
+            <th>Statut</th>
+            <th>Date</th>
+            <th>Coût</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="interventionsTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modalTitle">Nouvelle intervention</h2>
+      <form id="interventionForm">
+        <input type="hidden" id="interventionId" />
+        <select id="equipementId" required></select>
+        <select id="technicienId" required></select>
+        <input type="text" id="statut" placeholder="Statut" required />
+        <input type="date" id="date" required />
+        <input type="number" id="cout" placeholder="Coût (€)" required />
+        <div class="form-buttons">
+          <button type="submit">💾 Enregistrer</button>
+          <button type="button" class="cancel-btn" onclick="closeModal()">❌ Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    window.onload = () => {
+      fetch('../accueil/header.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('header-container').innerHTML = data);
+
+      fetch('../accueil/sidebar.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('sidebar-container').innerHTML = data);
+    };
+  </script>
+
+  <script src="interventions.js"></script>
+</body>
+</html>

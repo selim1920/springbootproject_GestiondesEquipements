@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestion des Utilisateurs</title>
+  <link rel="stylesheet" href="utilisateurs.css">
+</head>
+<body>
+  <!-- Header et Sidebar dynamiques -->
+  <div id="header-container"></div>
+
+  <div class="layout">
+    <div id="sidebar-container"></div>
+
+    <div class="content">
+      <button class="add-button" onclick="openModal()">➕ Ajouter un utilisateur</button>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Rôle</th>
+            <th>Mot de passe</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="utilisateursTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modale -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modalTitle">Ajouter un utilisateur</h2>
+      <form id="utilisateurForm">
+        <input type="hidden" id="utilisateurId">
+        <input type="text" id="nom" placeholder="Nom" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="motDePasse" placeholder="Mot de passe" required>
+        <input type="text" id="role" placeholder="Rôle" required>
+        <div class="form-buttons">
+          <button type="submit">💾 Enregistrer</button>
+          <button type="button" class="cancel-btn" onclick="closeModal()">❌ Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Chargement Header + Sidebar -->
+  <script>
+    window.onload = () => {
+      fetch('../accueil/header.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('header-container').innerHTML = data);
+
+      fetch('../accueil/sidebar.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('sidebar-container').innerHTML = data);
+    };
+  </script>
+
+  <script src="utilisateurs.js"></script>
+</body>
+</html>

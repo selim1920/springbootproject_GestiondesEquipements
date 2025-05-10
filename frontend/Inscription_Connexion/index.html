@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Équipements</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-white rounded-xl shadow-lg overflow-hidden">
+        <!-- Header with tabs -->
+        <div class="flex border-b border-gray-200">
+            <button id="loginTab" class="flex-1 py-4 px-6 text-center font-medium text-blue-600 bg-blue-50">
+                <i class="fas fa-sign-in-alt mr-2"></i>Connexion
+            </button>
+            <button id="registerTab" class="flex-1 py-4 px-6 text-center font-medium text-gray-500 hover:text-blue-600">
+                <i class="fas fa-user-plus mr-2"></i>Inscription
+            </button>
+        </div>
+        
+        <!-- Login Form -->
+        <div id="loginForm" class="form-container p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Connectez-vous</h2>
+            <form id="loginFormElement">
+                <div class="mb-4 relative">
+                       <label for="loginEmail" class="floating-label text-gray-500 ml-3 mt-2">Email :</label>
+                    <input type="email" id="loginEmail" class="input-field w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder=" " required>
+                 
+                </div>
+                <div class="mb-6 relative">
+                      <label for="loginPassword" class="floating-label text-gray-500 ml-3 mt-2">Mot de passe :</label>
+                    <input type="password" id="loginPassword" class="input-field w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder=" " required>
+                  
+                </div>
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="rememberMe" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                        <label for="rememberMe" class="ml-2 block text-sm text-gray-700">Se souvenir de moi</label>
+                    </div>
+                    <a href="#" class="text-sm text-blue-600 hover:underline">Mot de passe oublié?</a>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Se connecter
+                </button>
+            </form>
+            <div class="mt-6 text-center">
+                <p class="text-gray-600">Vous n'avez pas de compte? <button id="switchToRegister" class="text-blue-600 hover:underline">S'inscrire</button></p>
+            </div>
+        </div>
+        
+        <!-- Register Form -->
+        <div id="registerForm" class="form-container p-6 hidden">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Créez un compte</h2>
+            <form id="registerFormElement">
+                <div class="mb-4 relative">
+                     <label for="registerName" class="floating-label text-gray-500 ml-3 mt-2">Nom complet :</label>
+                    <input type="text" id="registerName" class="input-field w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder=" " required>
+                   
+                </div>
+                <div class="mb-4 relative">
+                        <label for="registerEmail" class="floating-label text-gray-500 ml-3 mt-2">Email :</label>
+                    <input type="email" id="registerEmail" class="input-field w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder=" " required>
+                
+                </div>
+                <div class="mb-4 relative">
+                    <label for="registerPassword" class="floating-label text-gray-500 ml-3 mt-2">Mot de passe :</label>
+                    <input type="password" id="registerPassword" class="input-field w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder=" " required>
+                    
+                </div>
+                <div class="mb-6 relative">
+                     <label for="registerConfirmPassword" class="floating-label text-gray-500 ml-3 mt-2">Confirmer le mot de passe :</label>
+                    <input type="password" id="registerConfirmPassword" class="input-field w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder=" " required>
+                   
+                </div>
+                <div class="mb-6">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="acceptTerms" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" required>
+                        <label for="acceptTerms" class="ml-2 block text-sm text-gray-700">
+                            J'accepte les <a href="#" class="text-blue-600 hover:underline">conditions d'utilisation :</a>
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150">
+                    <i class="fas fa-user-plus mr-2"></i>S'inscrire
+                </button>
+            </form>
+            <div class="mt-6 text-center">
+                <p class="text-gray-600">Vous avez déjà un compte? <button id="switchToLogin" class="text-blue-600 hover:underline">Se connecter</button></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

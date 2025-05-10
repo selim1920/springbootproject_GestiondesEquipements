@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gestion des Techniciens</title>
+  <link rel="stylesheet" href="techniciens.css" />
+</head>
+<body>
+  <div id="header-container"></div>
+
+  <div class="layout">
+    <div id="sidebar-container"></div>
+
+    <div class="content">
+      <h2>👨‍🔧 Liste des Techniciens</h2>
+      <button class="add-button" onclick="openModal()">➕ Ajouter un technicien</button>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Compétences</th>
+            <th>Disponibilité</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="techniciensTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modalTitle">Nouveau technicien</h2>
+      <form id="technicienForm">
+        <input type="hidden" id="technicienId" />
+        <input type="text" id="nom" placeholder="Nom" required />
+        <input type="text" id="competences" placeholder="Compétences" required />
+        <select id="disponibilite">
+          <option value="true">Disponible</option>
+          <option value="false">Indisponible</option>
+        </select>
+        <div class="form-buttons">
+          <button type="submit">💾 Enregistrer</button>
+          <button type="button" class="cancel-btn" onclick="closeModal()">❌ Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    window.onload = () => {
+      fetch('../accueil/header.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('header-container').innerHTML = data);
+
+      fetch('../accueil/sidebar.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('sidebar-container').innerHTML = data);
+    };
+  </script>
+
+  <script src="techniciens.js"></script>
+</body>
+</html>

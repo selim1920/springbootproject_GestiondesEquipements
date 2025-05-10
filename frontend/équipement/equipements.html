@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gestion des Équipements</title>
+  <link rel="stylesheet" href="equipements.css" />
+</head>
+<body>
+  <!-- Header chargé dynamiquement -->
+  <div id="header-container"></div>
+
+  <!-- Layout principal avec sidebar + contenu -->
+  <div class="layout">
+    <!-- Sidebar chargée dynamiquement -->
+    <div id="sidebar-container"></div>
+
+    <!-- Zone principale -->
+    <div class="content">
+      <!-- Barre de recherche -->
+      <div class="search-container">
+        <input type="text" id="search" placeholder="Rechercher un équipement..." onkeyup="searchEquipements()">
+      </div>
+
+      <!-- Bouton d'ajout d'équipement -->
+      <button class="add-button" onclick="openModal()">➕ Ajouter un équipement</button>
+      
+      <!-- Tableau des équipements -->
+      <table>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>État</th>
+            <th>Date d'acquisition</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="equipementsTableBody"></tbody>
+      </table>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <button id="prevPage" onclick="changePage('prev')" disabled>Précédent</button>
+        <span id="pageNumber">Page 1</span>
+        <button id="nextPage" onclick="changePage('next')">Suivant</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modale pour ajout / modification -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modalTitle">Ajouter un équipement</h2>
+      <form id="equipementForm">
+        <input type="hidden" id="equipementId" />
+        <input type="text" id="nom" placeholder="Nom" required />
+        <select id="etat" required>
+          <option value="">-- Choisir l'état --</option>
+          <option value="En fonction">En fonction</option>
+          <option value="En panne">En panne</option>
+        </select>
+        <input type="date" id="dateAcquisition" required />
+        <div class="form-buttons">
+          <button type="submit">💾 Enregistrer</button>
+          <button type="button" class="cancel-btn" onclick="closeModal()">❌ Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Charger header + sidebar depuis ../accueil -->
+  <script>
+    window.onload = () => {
+      fetch('../accueil/header.html')
+        .then(res => {
+          if (!res.ok) {
+            throw new Error('Erreur de chargement du header');
+          }
+          return res;
+        })
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('header-container').innerHTML = data;
+        });
+
+      fetch('../accueil/sidebar.html')
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById('sidebar-container').innerHTML = data;
+        });
+    };
+  </script>
+
+  <script src="equipements.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="../accueil/accueil.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <!-- Layout principal -->
+  <div class="layout">
+    <!-- Sidebar -->
+    <div id="sidebar-container" class="sidebar">
+      <ul>
+        <li><a href="#" class="active">Dashboard</a></li>
+        <li><a href="#">Équipements</a></li>
+        <li><a href="#">Pannes</a></li>
+        <li><a href="#">Interventions</a></li>
+        <li><a href="#">Techniciens</a></li>
+        <li><a href="#">Utilisateurs</a></li>
+      </ul>
+    </div>
+
+    <!-- Contenu -->
+    <div class="content">
+      <h1>📊 Tableau de bord</h1>
+      <p>Bienvenue dans votre tableau de bord pour gérer les opérations de maintenance.</p>
+
+      <!-- Statistiques -->
+      <div class="stats-cards">
+        <div class="stat-card blue">
+          <div class="icon"><i class="fas fa-database"></i></div>
+          <div class="info">
+            <h3 id="totalEquipements">0</h3>
+            <p>Total équipements</p>
+          </div>
+        </div>
+        <div class="stat-card red">
+          <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
+          <div class="info">
+            <h3 id="equipementsEnPanne">0</h3>
+            <p>En panne</p>
+          </div>
+        </div>
+        <div class="stat-card green">
+          <div class="icon"><i class="fas fa-check-circle"></i></div>
+          <div class="info">
+            <h3 id="equipementsEnFonction">0</h3>
+            <p>En fonction</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Box for Alerts -->
+      <div class="alert-box">
+        <div id="alert-container" class="alert-container hidden">
+          <div class="alert success">
+            <i class="fas fa-check-circle"></i>
+            <span>Opération réussie !</span>
+            <button class="close-btn">×</button>
+          </div>
+          <div class="alert warning">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>Attention, une erreur est survenue.</span>
+            <button class="close-btn">×</button>
+          </div>
+        </div>
+        <div class="view-alerts-button">
+          <button onclick="toggleAlerts()">📢 Voir les alertes</button>
+        </div>
+      </div>
+
+      <!-- Graphique -->
+      <div class="chart-container">
+        <h2>Répartition des équipements</h2>
+        <canvas id="equipementPieChart" width="300" height="300"></canvas>
+      </div>
+      <!-- New Technician List Container -->
+<div class="technician-list-container">
+  <h2>Techniciens Disponibles</h2>
+  <ul id="technicianList">
+    <!-- List of available technicians will be populated here -->
+  </ul>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modalTitle">Ajouter une opération</h2>
+      <form id="dashboardForm">
+        <input type="text" id="equipementId" hidden />
+        <input type="text" id="nom" placeholder="Nom de l'équipement" required />
+        <input type="text" id="etat" placeholder="État (en fonction, en panne)" required />
+        <input type="date" id="dateAcquisition" required />
+        <div class="form-buttons">
+          <button type="submit">💾 Enregistrer</button>
+          <button type="button" class="cancel-btn" onclick="closeModal()">❌ Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+  <script>
+    // Toggle the alerts visibility
+    function toggleAlerts() {
+      const alertContainer = document.getElementById('alert-container');
+      alertContainer.classList.toggle('hidden');
+    }
+  </script>
+</body>
+</html>

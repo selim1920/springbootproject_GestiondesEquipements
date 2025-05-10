@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gestion des Pannes</title>
+  <link rel="stylesheet" href="pannes.css" />
+</head>
+<body>
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <!-- Layout -->
+  <div class="layout">
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+
+    <!-- Contenu principal -->
+    <div class="content">
+      <button class="add-button" onclick="openModal()">➕ Signaler une panne</button>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Catégorie</th>
+            <th>Équipement</th>
+            <th>Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="pannesTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modalTitle">Signaler une panne</h2>
+      <form id="panneForm">
+        <input type="hidden" id="panneId" />
+        <input type="text" id="description" placeholder="Description" required />
+        <input type="text" id="categorie" placeholder="Catégorie" required />
+        <select id="equipementId" required>
+          <option value="">-- Choisir un équipement --</option>
+        </select>
+        <input type="date" id="dateSignalement" required />
+        <div class="form-buttons">
+          <button type="submit">💾 Enregistrer</button>
+          <button type="button" class="cancel-btn" onclick="closeModal()">❌ Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    window.onload = () => {
+      fetch('../accueil/header.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('header-container').innerHTML = data);
+      fetch('../accueil/sidebar.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('sidebar-container').innerHTML = data);
+    };
+  </script>
+
+  <script src="pannes.js"></script>
+</body>
+</html>
